@@ -41,19 +41,38 @@
 <script setup lang="ts">
 import InputText from '@/components/InputText.vue'
 import InputPassword from '@/components/InputPassword.vue'
-import { ref } from 'vue'
+import { inject, ref } from 'vue'
 import { useUserStore } from '@/stores/user'
 import router from '@/router'
-// import { inject, ref } from 'vue'
+
+const swal: any = inject('$swal')
 const userLogin = ref({
   userName: '',
   password: ''
 })
 const user = useUserStore()
 const authenticate = () => {
-  user.login(userLogin.value).then((res) => {
-    console.log(res, 'logouuu')
-  })
+  if (userLogin.value.userName !== '' && userLogin.value.password !== '') {
+    user.login(userLogin.value).then((res) => {
+      if (res) {
+        alert('Logado!!!')
+      } else {
+        swal.fire({
+          title: 'Erro!',
+          icon: 'error',
+          confirmButtonText: 'Ok',
+          text: 'Usuário ou senha não encontrado!'
+        })
+      }
+    })
+  } else {
+    swal.fire({
+      title: 'Atenção!',
+      icon: 'warning',
+      confirmButtonText: 'Ok',
+      text: 'Informe um usuário e senha validos!'
+    })
+  }
 }
 
 setInterval(() => {

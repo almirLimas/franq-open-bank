@@ -69,14 +69,29 @@ const userData = ref({
 const confirmPassword = ref('')
 
 const confirm = () => {
-  if (userData.value.password === confirmPassword.value) {
-    return true
+  if (
+    userData.value.userName !== '' &&
+    userData.value.email !== '' &&
+    userData.value.password !== ''
+  ) {
+    if (userData.value.password === confirmPassword.value) {
+      return true
+    } else {
+      swal.fire({
+        title: 'Atenção!',
+        icon: 'warning',
+        confirmButtonText: 'Ok',
+        text: 'As senhas não coincidem!'
+      })
+
+      return false
+    }
   } else {
     swal.fire({
       title: 'Atenção!',
       icon: 'warning',
       confirmButtonText: 'Ok',
-      text: 'As senhas não coincidem!'
+      text: 'Preencha todos os campos!'
     })
 
     return false
