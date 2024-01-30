@@ -1,6 +1,6 @@
 <template>
   <section class="flex justify-center items-center h-screen">
-    <div class="w-1/2 m-5 rounded-2xl shadow-xl p-10 bg-white container">
+    <div class="xl:w-1/2 w-full m-5 rounded-2xl shadow-xl p-10 bg-white container">
       <div class="flex justify-center">
         <div class="container mt-4 text-indigo-400 font-bold ml-4">
           <i class="fa-solid fa-users text-2xl"></i>
