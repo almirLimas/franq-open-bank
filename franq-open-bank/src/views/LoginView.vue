@@ -2,25 +2,37 @@
   <section class="flex justify-center items-center h-screen">
     <div class="w-96 m-5 rounded-2xl shadow-xl p-10 bg-white">
       <figure class="flex justify-center">
-        <i class="fa-solid fa-g text-6xl text-cyan-500"></i>
+        <img src="../assets/img/LOGO-frang.svg" alt="Logo da Franq" style="width: 12rem" />
       </figure>
       <form class="mt-16">
         <InputText
           :label-name="'Usuário'"
           :iput-name="'userName'"
-          v-model:model-value="userName"
+          v-model:model-value="userLogin.userName"
           :place-holder="'Digite seu usuário'"
         />
         <InputPassword
           class="mt-5"
           :label-name="'Senha'"
           iput-name="'password'"
-          v-model:model-value="password"
+          v-model:model-value="userLogin.password"
           :place-holder="'Digite sua senha'"
         />
-        <button @click.prevent="" class="bg-blue-500 text-white px-4 py-2 rounded-md w-full mt-6">
+        <button
+          @click.prevent="authenticate"
+          class="bg-indigo-400 text-white px-4 py-2 rounded-md w-full mt-6 hover:bg-indigo-600 transition ease-in-out delay-150"
+        >
           Entrar
         </button>
+        <div class="mt-5 flex justify-center">
+          <span class="text-sm mr-1 text-gray-800 font-semibold">Não tem uma conta?</span>
+
+          <span
+            class="text-sm font-semibold text-indigo-600 cursor-pointer"
+            @click="router.push('/register')"
+            >Cadastre-se</span
+          >
+        </div>
       </form>
     </div>
   </section>
@@ -30,27 +42,25 @@
 import InputText from '@/components/InputText.vue'
 import InputPassword from '@/components/InputPassword.vue'
 import { ref } from 'vue'
-// import { useRouter } from 'vue-router'
+import { useUserStore } from '@/stores/user'
+import router from '@/router'
 // import { inject, ref } from 'vue'
-// import { useUserStore } from '@/stores/user'
-// import { useClientStore } from '@/stores/client'
-// const user = useUserStore()
-// const client = useClientStore()
-// const swal: any = inject('$swal')
-const userName = ref('')
-const password = ref('')
-// const login = () => {
-//   // Simule a autenticação (substitua por sua lógica real)
-//   if (this.username === 'usuario' && this.password === 'senha') {
-//     // Armazenar dados de login no localStorage
-//     localStorage.setItem('user', JSON.stringify({ username: this.username }))
+const userLogin = ref({
+  userName: '',
+  password: ''
+})
+const user = useUserStore()
+const authenticate = () => {
+  user.login(userLogin.value).then((res) => {
+    console.log(res, 'logouuu')
+  })
+}
 
-//     // Redirecionar ou realizar outra ação após o login
-//     this.$router.push('/dashboard')
-//   } else {
-//     alert('Usuário ou senha inválidos')
-//   }
-// }
+setInterval(() => {
+  // Logout automático após expiração do tempo
+  user.logout()
+  router.push('/')
+}, 50000)
 
 // }
 </script>

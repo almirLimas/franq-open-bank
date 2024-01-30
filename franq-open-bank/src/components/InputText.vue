@@ -9,9 +9,10 @@
       @blur="updateValueBlur"
       :id="iputName"
       type="text"
+      maxlength="40"
       :name="iputName"
       required
-      class="w-full p-2 border border-gray-200"
+      class="w-full p-2 border rounded-lg border-gray-200 focus:outline-none focus:ring focus:ring-indigo-400"
       :placeholder="placeHolder"
     />
   </div>

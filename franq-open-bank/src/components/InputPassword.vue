@@ -11,11 +11,11 @@
       :name="iputName"
       required
       maxlength="8"
-      class="w-full p-2 border border-gray-200 rounded-md"
+      class="w-full p-2 border border-gray-200 rounded-lg focus:outline-none focus:ring focus:ring-indigo-400"
       :placeholder="placeHolder"
     />
     <button type="button" @click="togglePasswordVisibility" class="eyePassword">
-      <i :class="showPassword ? 'fa-regular fa-eye' : 'fa-regular fa-eye-slash'"></i>
+      <i :class="showPassword ? 'fa-regular fa-eye-slash' : 'fa-regular fa-eye'"></i>
     </button>
   </div>
 </template>
@@ -57,7 +57,7 @@ const updateValue = (e: Event) => {
 .eyePassword {
   position: relative;
   top: -1.9rem;
-  left: 17rem;
+  left: 90%;
 }
 @media (max-width: 420px) {
   .eyePassword {

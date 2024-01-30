@@ -1,0 +1,30 @@
+:root {
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+ul,
+li {
+  list-style: none;
+}
+
+button {
+  border: 0;
+  background-color: inherit;
+  font: inherit;
+}
+
+body {
+  min-height: 100vh;
+  background: #f5f4f4;
+}
+button:disabled {
+  background-color: rgba(190, 190, 190, 0.459);
+  color: #c9c9c9;
+}
