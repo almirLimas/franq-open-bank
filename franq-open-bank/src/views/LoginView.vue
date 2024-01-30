@@ -76,7 +76,7 @@ const authenticate = () => {
 }
 
 setInterval(() => {
-  // Logout automático após expiração do tempo
+  // Logout automático após expiração do
   user.logout()
   router.push('/')
 }, 50000)
