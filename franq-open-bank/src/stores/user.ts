@@ -1,5 +1,4 @@
 import { defineStore, acceptHMRUpdate } from 'pinia'
-import { v4 as uuidv4 } from 'uuid'
 
 export const useUserStore = defineStore({
   id: 'user',
