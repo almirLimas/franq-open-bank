@@ -18,7 +18,6 @@ export const useUserStore = defineStore({
       return true
     },
     async login(userObject: any) {
-      console.log(userObject.userName)
       const user = JSON.parse(localStorage.getItem('userData') || '[]')
       const userFound = user.find(function (u: any) {
         return u.userName === userObject.userName && u.password === userObject.password
@@ -33,9 +32,9 @@ export const useUserStore = defineStore({
     },
 
     async checkAuthentication() {
-      const user = JSON.parse(localStorage.getItem('user') || '[]')
+      const user = JSON.parse(localStorage.getItem('user') || 'null')
 
-      if (user) {
+      if (user !== null) {
         return true
       } else {
         return false
@@ -43,7 +42,6 @@ export const useUserStore = defineStore({
     },
 
     async logout() {
-      console.log('chegouu')
       localStorage.removeItem('user')
     }
   }

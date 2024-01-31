@@ -43,6 +43,7 @@ import InputText from '@/components/InputText.vue'
 import InputPassword from '@/components/InputPassword.vue'
 import { inject, ref } from 'vue'
 import { useUserStore } from '@/stores/user'
+
 import router from '@/router'
 
 const swal: any = inject('$swal')
@@ -50,12 +51,13 @@ const userLogin = ref({
   userName: '',
   password: ''
 })
+
 const user = useUserStore()
 const authenticate = () => {
   if (userLogin.value.userName !== '' && userLogin.value.password !== '') {
     user.login(userLogin.value).then((res) => {
       if (res) {
-        alert('Logado!!!')
+        router.push('/dashboard')
       } else {
         swal.fire({
           title: 'Erro!',
@@ -74,14 +76,6 @@ const authenticate = () => {
     })
   }
 }
-
-setInterval(() => {
-  // Logout automático após expiração do
-  user.logout()
-  router.push('/')
-}, 50000)
-
-// }
 </script>
 
 <style></style>
