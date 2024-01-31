@@ -13,9 +13,7 @@ export const useHgApi = defineStore({
       const apiKey = '251de88d'
       const apiUrl = `https://api.hgbrasil.com/finance?format=json-cors&key=${apiKey}`
       try {
-        const response = await axios.get(apiUrl, {
-          headers: { 'Access-Control-Allow-Origin': '*' }
-        })
+        const response = await axios.get(apiUrl)
 
         return response
       } catch (error) {
