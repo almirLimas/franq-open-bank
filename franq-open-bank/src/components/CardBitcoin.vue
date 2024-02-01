@@ -5,7 +5,7 @@
   >
     <div class="grid lg:grid-cols-12 gap-2">
       <div class="col-span-12 flex justify-start">
-        <i :class="iconCard" class="text-yellow-500 text-2xl"></i>
+        <i :class="iconCard" class="text-orange-500 text-2xl"></i>
       </div>
       <div class="col-span-12 flex justify-start">
         <p class="text-blue-400 font-bold">{{ titleCard }}</p>

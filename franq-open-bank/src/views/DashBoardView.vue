@@ -6,6 +6,29 @@
     <div class="p-10 container">
       <div class="flex justify-center">
         <div class="container mt-4 text-yellow-500 font-bold ml-4">
+          <i class="fa-solid fa-coins text-4xl"></i>
+          <span class="ml-5">Moeda</span>
+        </div>
+      </div>
+
+      <div class="grid xl:grid-cols-3 lg:grid-cols-2 sm:grid-cols-1 gap-2">
+        <CardCurrency
+          v-for="(item, index) in dataCurrency"
+          :key="index"
+          :title-card="(item as any).name"
+          :icon-card="'fa-solid fa-coins'"
+          :buy="(item as any).buy"
+          :sell="(item as any).sell"
+          :variation="(item as any).variation"
+          :format-type="(item as any).name"
+        />
+      </div>
+    </div>
+  </section>
+  <section class="flex justify-center">
+    <div class="p-10 container">
+      <div class="flex justify-center">
+        <div class="container mt-4 text-orange-500 font-bold ml-4">
           <i class="fa-brands fa-bitcoin text-4xl"></i>
           <span class="ml-5">Bitcoin</span>
         </div>
@@ -53,6 +76,7 @@
 <script setup lang="ts">
 import CardBitcoin from '@/components/CardBitcoin.vue'
 import CardStocks from '@/components/CardStocks.vue'
+import CardCurrency from '@/components/CardCurrency.vue'
 import { inject, onMounted, ref } from 'vue'
 import { useHgApi } from '@/stores/hgApi'
 import router from '@/router'
@@ -66,6 +90,7 @@ const hgApi = useHgApi()
 const user = useUserStore()
 const dataBitCoins = ref('')
 const dataStocks = ref('')
+const dataCurrency = ref('')
 
 const isLoading = ref(false)
 onMounted(() => {
@@ -78,6 +103,9 @@ onMounted(() => {
     .then((res) => {
       dataBitCoins.value = res?.data.results.bitcoin
       dataStocks.value = res?.data.results.stocks
+      dataCurrency.value = res?.data.results.currencies
+
+      console.log(dataCurrency.value)
     })
     .finally(() => {
       isLoading.value = false
