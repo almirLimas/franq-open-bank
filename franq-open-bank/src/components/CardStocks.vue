@@ -15,11 +15,11 @@
       >
         <p class="text-gray-500 font-bold" v-if="location">
           Localização:
-          <span class="text-green-500 ml-2">{{ location }}</span>
+          <span class="text-gray-6 ml-2">{{ location }}</span>
         </p>
         <p class="text-gray-500 font-bold" v-if="points">
           Pontos:
-          <span class="text-green-500 ml-2">{{ points }}</span>
+          <span class="text-gray-600 ml-2">{{ points }}</span>
         </p>
 
         <p class="text-gray-500 font-bold" v-if="variation">
@@ -27,7 +27,11 @@
           <span
             class="ml-2"
             :class="Math.sign(variation) === 1 ? 'text-green-500' : 'text-red-500'"
-            >{{ variation }}</span
+            >{{
+              new Intl.NumberFormat('default', {
+                style: 'percent'
+              }).format(variation)
+            }}</span
           >
         </p>
       </div>

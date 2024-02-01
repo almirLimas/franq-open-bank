@@ -13,10 +13,13 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "chart.js": "^3.9.1",
+    "flowbite": "^2.2.1",
     "pinia": "^2.1.7",
     "sweetalert2": "^11.10.4",
     "uuid": "^9.0.1",
     "vue": "^3.3.11",
+    "vue-chart-3": "^3.1.8",
     "vue-router": "^4.2.5",
     "vue-sweetalert2": "^5.0.5"
   },

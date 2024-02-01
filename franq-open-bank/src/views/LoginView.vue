@@ -20,7 +20,7 @@
         />
         <button
           @click.prevent="authenticate"
-          class="bg-indigo-400 text-white px-4 py-2 rounded-md w-full mt-6 hover:bg-indigo-600 transition ease-in-out delay-150"
+          class="bg-indigo-500 text-white px-4 py-2 rounded-md w-full mt-6 hover:bg-indigo-600 transition ease-in-out delay-150"
         >
           Entrar
         </button>
@@ -57,6 +57,7 @@ const authenticate = () => {
   if (userLogin.value.userName !== '' && userLogin.value.password !== '') {
     user.login(userLogin.value).then((res) => {
       if (res) {
+        user.isLogged = true
         router.push('/dashboard')
       } else {
         swal.fire({

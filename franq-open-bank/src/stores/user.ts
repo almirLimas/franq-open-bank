@@ -4,7 +4,8 @@ export const useUserStore = defineStore({
   id: 'user',
 
   state: () => ({
-    userData: [] as any[]
+    userData: [] as any[],
+    isLogged: false
   }),
 
   actions: {
@@ -42,6 +43,7 @@ export const useUserStore = defineStore({
 
     async logout() {
       localStorage.removeItem('user')
+      this.isLogged = false
     }
   }
 })

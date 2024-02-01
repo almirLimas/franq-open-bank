@@ -8,4 +8,5 @@ export const theme = {
 export const variants = {
   extend: {}
 }
-export const plugins = []
+// eslint-disable-next-line no-undef
+export const plugins = [require('flowbite/plugin')]

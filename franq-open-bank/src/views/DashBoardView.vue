@@ -59,15 +59,19 @@ import router from '@/router'
 import { useUserStore } from '@/stores/user'
 import Loading from 'vue-loading-overlay'
 import 'vue-loading-overlay/dist/css/index.css'
+import { initFlowbite } from 'flowbite'
 
 const swal: any = inject('$swal')
 const hgApi = useHgApi()
 const user = useUserStore()
 const dataBitCoins = ref('')
 const dataStocks = ref('')
+
 const isLoading = ref(false)
 onMounted(() => {
+  initFlowbite()
   isLoading.value = true
+  user.isLogged = true
 
   hgApi
     .fincance()

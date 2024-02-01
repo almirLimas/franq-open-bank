@@ -15,7 +15,7 @@
       >
         <p class="text-gray-500 font-bold" v-if="last">
           Último:
-          <span class="text-green-500 ml-2">{{
+          <span class="text-gray-600 ml-2">{{
             new Intl.NumberFormat(formatType[0] === 'BRL' ? 'pt-BR' : 'en-US', {
               style: 'currency',
               currency: formatType[0]
@@ -24,7 +24,7 @@
         </p>
         <p class="text-gray-500 font-bold" v-if="buy">
           Comprar:
-          <span class="text-green-500 ml-2">{{
+          <span class="text-gray-600 ml-2">{{
             new Intl.NumberFormat(formatType[0] === 'BRL' ? 'pt-BR' : 'en-US', {
               style: 'currency',
               currency: formatType[0]
@@ -33,7 +33,7 @@
         </p>
         <p class="text-gray-500 font-bold" v-if="sell">
           Vender:
-          <span class="text-green-500 ml-2">{{
+          <span class="text-gray-600 ml-2">{{
             new Intl.NumberFormat(formatType[0] === 'BRL' ? 'pt-BR' : 'en-US', {
               style: 'currency',
               currency: formatType[0]
@@ -46,9 +46,8 @@
             class="ml-2"
             :class="Math.sign(variation) === 1 ? 'text-green-500' : 'text-red-500'"
             >{{
-              new Intl.NumberFormat(formatType[0] === 'BRL' ? 'pt-BR' : 'en-US', {
-                style: 'currency',
-                currency: formatType[0]
+              new Intl.NumberFormat('default', {
+                style: 'percent'
               }).format(variation)
             }}</span
           >

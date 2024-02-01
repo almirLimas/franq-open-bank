@@ -41,7 +41,7 @@
         <div class="flex justify-center">
           <button
             @click.prevent="registerUser"
-            class="w-40 bg-indigo-400 text-white px-4 py-2 rounded-md mt-6 hover:bg-indigo-600 transition ease-in-out delay-150"
+            class="w-40 bg-indigo-500 text-white px-4 py-2 rounded-md mt-6 hover:bg-indigo-600 transition ease-in-out delay-150"
           >
             Cadastrar
           </button>
@@ -58,6 +58,7 @@ import InputPassword from '@/components/InputPassword.vue'
 import { inject, ref } from 'vue'
 import { useUserStore } from '@/stores/user'
 import router from '@/router'
+import { validateEmail } from '@/validator/validatorEmail'
 
 const user = useUserStore()
 const swal: any = inject('$swal')
@@ -74,14 +75,25 @@ const confirm = () => {
     userData.value.email !== '' &&
     userData.value.password !== ''
   ) {
-    if (userData.value.password === confirmPassword.value) {
-      return true
+    if (validateEmail(userData.value.email)) {
+      if (userData.value.password === confirmPassword.value) {
+        return true
+      } else {
+        swal.fire({
+          title: 'Atenção!',
+          icon: 'warning',
+          confirmButtonText: 'Ok',
+          text: 'As senhas não coincidem!'
+        })
+
+        return false
+      }
     } else {
       swal.fire({
         title: 'Atenção!',
         icon: 'warning',
         confirmButtonText: 'Ok',
-        text: 'As senhas não coincidem!'
+        text: 'Isira um E-mail valido!'
       })
 
       return false
